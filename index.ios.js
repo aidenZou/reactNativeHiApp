@@ -12,28 +12,22 @@ import {
   View
 } from 'react-native';
 
-// import Icon from 'react-native-vector-icons/Ionicons';
-// <Icon name="ios-person" size={30} color="#4F8EF7" />
+import ScrollableTabView, { ScrollableTabBar, } from 'react-native-scrollable-tab-view';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
+import IndexView from './app/views/Index';
+import FacebookTabsExample from './app/views/FacebookTabsExample';
+import FacebookExample from './app/views/FacebookExample';
+import TabBar from './app/components/TabBar';
 
-class reactNativeHiApp extends Component {
+class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Icon.Button name="facebook" backgroundColor="#3b5998" onPress={this.loginWithFacebook}>
-          Login with Facebook
-        </Icon.Button>
-        <Text style={styles.welcome}>
-          Welcome to React Native!子凡
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload, {'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+        <ScrollableTabView initialPage={0} renderTabBar={() => <ScrollableTabBar />}>
+          <Text tabLabel='Tab #1'>My</Text>
+          <Text tabLabel='Tab #2'>favorite</Text>
+          <Text tabLabel='Tab #5'>project</Text>
+        </ScrollableTabView>
       </View>
     );
   }
@@ -42,20 +36,9 @@ class reactNativeHiApp extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+    marginTop: 30,
   },
 });
 
-AppRegistry.registerComponent('reactNativeHiApp', () => reactNativeHiApp);
+// AppRegistry.registerComponent('reactNativeHiApp', () => App);
+AppRegistry.registerComponent('reactNativeHiApp', () => TabBar);

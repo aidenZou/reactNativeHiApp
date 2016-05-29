@@ -17,23 +17,30 @@ function renderScene(route, navigator) {
     return <route.component route={route} navigator={navigator} />;
 }
 
+const REQUEST_URL = 'https://api.youcai.xin/cai/item?cate=1'
+
 class Index extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: []
+            items: null,
         }
-        this.fetch()
+        // this.fetchData()
     }
 
-    fetch() {
-        fetch('https://api.youcai.xin/cai/item?cate=1')
-            .then((response) => response.text())
-            .then((responseText) => {
+    componentDidMount() {
+        this.fetchData();
+    }
+
+    fetchData() {
+        fetch(REQUEST_URL)
+            // .then((response) => response.text())
+            .then((response) => response.json())
+            .then((responseData) => {
                 // console.log(JSON.parse(responseText));
-                let data = JSON.parse(responseText)
+                // let data = JSON.parse(responseText)
                 this.setState({
-                    items: data.items
+                    items: responseData.items
                 })
             })
             .catch((error) => {
@@ -57,7 +64,11 @@ class Index extends Component {
                 component: NextView,
             }),
         }
-        
+
+        if (!this.state.items) {
+            return this.renderLoadingView();
+        }
+
         return (
             <View
                 style={{
@@ -76,26 +87,42 @@ class Index extends Component {
                     style={{
                         flex: 1,
                     }}>
+                    <Text>{this.state.items.length}</Text>
                     <View
                         style={{
                             flex: 1,
-                            justifyContent: "flex-start",
-                            alignItems: 'stretch',
+                            // justifyContent: "flex-start",
+                            // alignItems: 'stretch',
+
+                            flexDirection: 'row',
+                            flexWrap: 'wrap',
+                            justifyContent: 'space-between',
                             backgroundColor: "rgba(155,155,155,0)",
+                            paddingLeft: 12,
+                            paddingRight: 12,
                         }}>
-                        <Text>{this.state.items.length}</Text>
-                        {this.renderItemBox()}
+                        {this.renderItemBox() }
                     </View>
                 </ScrollView>
             </View>
         );
     }
-    
+
+    renderLoadingView() {
+        return (
+            <View style={styles.container}>
+                <Text>
+                    Loading...
+                </Text>
+            </View>
+        );
+    }
+
     renderItemBox() {
-        let title = '131'
         return (
             this.state.items.map((item) => {
-                return <Item key={item.id} item={item}/>
+                return <View key={item.id} style={[{ alignSelf: 'center', paddingLeft: 0, }]}><Item key={item.id} item={item}/></View>
+                // return <View key={item.id} style={[{padding: 5}]}><Item key={item.id} item={item}/></View>
             })
         )
     }

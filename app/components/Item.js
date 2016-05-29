@@ -34,9 +34,11 @@ export default class Item extends Component {
                     style={[styles.img,]}
                     source={{ uri: item.imgs[0] }}
                     />
-                <Text>{item.title}</Text>
-                <Text>{quantity}</Text>
-                <Text>￥{item.price / 100}</Text>
+                <View style={[styles.box]}>
+                    <Text style={[styles.title]}>{item.title}</Text>
+                    <Text style={[{color: '#C4C4C4', fontSize: 12, marginTop: 10}]}>{quantity}</Text>
+                    <Text style={{fontSize: 14, color: '#09bb07', marginTop: 10}}>￥{item.price / 100}</Text>
+                </View>
             </View>
         );
     }
@@ -45,7 +47,7 @@ export default class Item extends Component {
 const styles = StyleSheet.create({
     container: {
         width: 170,
-        height: 226,
+        // height: 226,
         // flex: 1,
         // justifyContent: 'center',
         // alignItems: 'center',
@@ -57,5 +59,13 @@ const styles = StyleSheet.create({
         height: 135,
         backgroundColor: 'transparent',
         // marginRight: 10,
+    },
+    box: {
+        padding: 10,
+    },
+    title: {
+        color: '#646464',
+        fontSize: 14,
     }
+    
 });

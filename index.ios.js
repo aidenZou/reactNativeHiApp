@@ -14,9 +14,8 @@ import {
 
 import ScrollableTabView, { ScrollableTabBar, } from 'react-native-scrollable-tab-view';
 
-import IndexView from './app/views/Index';
-import FacebookTabsExample from './app/views/FacebookTabsExample';
-import FacebookExample from './app/views/FacebookExample';
+// import FacebookTabsExample from './app/views/FacebookTabsExample';
+// import FacebookExample from './app/views/FacebookExample';
 import TabBar from './app/components/TabBar';
 
 class App extends Component {

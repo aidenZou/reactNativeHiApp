@@ -61,7 +61,7 @@ class Index extends Component {
 
     render() {
         const titleConfig = {
-            title: 'HiApp', tintColor: 'black',
+            title: 'Hi CNode', tintColor: 'black',
         };
         // const leftButtonConfig = {
         //     title: 'Back',

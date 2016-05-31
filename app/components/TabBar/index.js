@@ -6,7 +6,7 @@ import {
 import TabNavigator from 'react-native-tab-navigator'
 import Icon from 'react-native-vector-icons/Ionicons'
 
-import IView from '../../views/Index'
+import IView from '../../views/I'
 import HomeView from '../../views/Home'
 import ListView from '../../views/List'
 

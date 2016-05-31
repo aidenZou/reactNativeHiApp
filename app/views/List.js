@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 
 import NavigationBar from 'react-native-navbar'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from 'react-native-vector-icons/Ionicons'
 
 import Topic from '../components/Topic'
 
@@ -21,7 +21,7 @@ const REQUEST_URL = 'https://cnodejs.org/api/v1/topics?mdrender=false'
 class Right extends Component {
     render() {
         return (
-            <Icon name='navicon' size={20}
+            <Icon name='ios-list-outline' size={30}
                   style={{ marginTop:10, marginRight: 8 }}
                   onPress={() => alert('还未实现呐!')}
             />
@@ -77,7 +77,7 @@ class Index extends Component {
             // }),
 
             // title: '过滤',
-            title: <Icon name='navicon' size={20}/>,
+            title: <Icon name='ios-list-outline' size={20}/>,
             handler: () => {
                 alert('还未实现呐!')
             }

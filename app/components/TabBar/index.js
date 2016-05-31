@@ -1,17 +1,7 @@
-// import React, {
-//   Component,
-//   StyleSheet,
-//   ScrollView,
-//   Text
-// } from 'react-native'
-
-import React, { Component } from 'react';
+import React, {Component} from 'react'
 import {
     StyleSheet,
-    ScrollView,
-    Text,
-    View
-} from 'react-native';
+} from 'react-native'
 
 import TabNavigator from 'react-native-tab-navigator'
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -26,12 +16,14 @@ let tabs = [
         icon: 'ios-home-outline',
         view: <ListView/>
     }, {
-        text: '购物车',
-        icon: 'ios-cart-outline',
+        text: '消息',
+        // icon: 'ios-chatbubbles-outline',
+        icon: 'ios-notifications-outline',
         view: <HomeView/>
     }, {
         text: '我的',
-        icon: 'ios-person-outline',
+        // icon: 'ios-person-outline',
+        icon: 'ios-contact-outline',
         view: <IView/>
     }
 ]
@@ -99,7 +91,4 @@ const styles = StyleSheet.create({
         color: '#787878',
         fontFamily: 'iconfont'
     },
-    // selectedTabIcon: {
-    //     color: '#ff9630'
-    // }
 })

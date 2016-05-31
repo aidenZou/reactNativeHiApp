@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import {
     Navigator,
     StyleSheet,
@@ -10,14 +10,14 @@ import {
 import NavigationBar from 'react-native-navbar'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-import Topic from '../components/Topic'
+// 菜品
+import Item from '../components/YcItem'
 
 function renderScene(route, navigator) {
-    return <route.component route={route} navigator={navigator}/>;
+    return <route.component route={route} navigator={navigator} />;
 }
 
-// const REQUEST_URL = 'https://api.youcai.xin/cai/item?cate=1'
-const REQUEST_URL = 'https://cnodejs.org/api/v1/topics?mdrender=false'
+const REQUEST_URL = 'https://api.youcai.xin/cai/item?cate=1'
 
 class Index extends Component {
     constructor(props) {
@@ -34,14 +34,14 @@ class Index extends Component {
 
     fetchData() {
         fetch(REQUEST_URL)
-        // .then((response) => response.text())
+            // .then((response) => response.text())
             .then((response) => response.json())
             .then((responseData) => {
                 console.log(responseData)
                 // console.log(JSON.parse(responseText));
                 // let data = JSON.parse(responseText)
                 this.setState({
-                    items: responseData.data
+                    items: responseData.items
                 })
             })
             .catch((error) => {
@@ -82,24 +82,25 @@ class Index extends Component {
                     rightButton={rightButtonConfig}
                     style={{ backgroundColor: "white", }}
                     statusBar={{ tintColor: "white", showAnimation: 'slide', hideAnimation: 'slide' }}
-                />
+                    />
                 <ScrollView
                     horizontal={false}
                     style={{
                         flex: 1,
                     }}>
+                    <Text>{this.state.items.length}</Text>
                     <View
                         style={{
                             flex: 1,
                             // justifyContent: "flex-start",
                             // alignItems: 'stretch',
 
-                            // flexDirection: 'row',
-                            // flexWrap: 'wrap',
-                            // justifyContent: 'space-between',
-                            // backgroundColor: "rgba(155,155,155,0)",
-                            backgroundColor: "rgba(255,255,255,0)",
-                            padding: 12,
+                            flexDirection: 'row',
+                            flexWrap: 'wrap',
+                            justifyContent: 'space-between',
+                            backgroundColor: "rgba(155,155,155,0)",
+                            paddingLeft: 12,
+                            paddingRight: 12,
                         }}>
                         {this.renderItemBox() }
                     </View>
@@ -121,7 +122,8 @@ class Index extends Component {
     renderItemBox() {
         return (
             this.state.items.map((item) => {
-                return <Topic key={item.id} item={item}/>
+                return <View key={item.id} style={[{ alignSelf: 'center', paddingLeft: 0, }]}><Item key={item.id} item={item}/></View>
+                // return <View key={item.id} style={[{padding: 5}]}><Item key={item.id} item={item}/></View>
             })
         )
     }
@@ -148,7 +150,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        // backgroundColor: '#F5FCFF',
+        backgroundColor: '#F5FCFF',
     },
     welcome: {
         fontSize: 20,
@@ -157,7 +159,7 @@ const styles = StyleSheet.create({
     },
     instructions: {
         textAlign: 'center',
-        // color: '#333333',
+        color: '#333333',
         marginBottom: 5,
     },
 });

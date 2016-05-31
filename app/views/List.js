@@ -4,7 +4,7 @@ import {
     StyleSheet,
     ScrollView,
     Text,
-    View
+    View,
 } from 'react-native'
 
 import NavigationBar from 'react-native-navbar'
@@ -16,8 +16,18 @@ function renderScene(route, navigator) {
     return <route.component route={route} navigator={navigator}/>;
 }
 
-// const REQUEST_URL = 'https://api.youcai.xin/cai/item?cate=1'
 const REQUEST_URL = 'https://cnodejs.org/api/v1/topics?mdrender=false'
+
+class Right extends Component {
+    render() {
+        return (
+            <Icon name='navicon' size={20}
+                  style={{ marginTop:10, marginRight: 8 }}
+                  onPress={() => alert('还未实现呐!')}
+            />
+        );
+    }
+}
 
 class Index extends Component {
     constructor(props) {
@@ -59,11 +69,18 @@ class Index extends Component {
         //         alert('hello');
         //     }
         // }
+
         let rightButtonConfig = {
-            title: 'Forward',
-            handler: () => this.props.navigator.push({
-                component: NextView,
-            }),
+            // title: 'Forward',
+            // handler: () => this.props.navigator.push({
+            //     component: NextView,
+            // }),
+
+            // title: '过滤',
+            title: <Icon name='navicon' size={20}/>,
+            handler: () => {
+                alert('还未实现呐!')
+            }
         }
 
         if (!this.state.items) {
@@ -79,7 +96,8 @@ class Index extends Component {
                 <NavigationBar
                     title={titleConfig}
                     // leftButton={leftButtonConfig}
-                    rightButton={rightButtonConfig}
+                    rightButton={<Right/>}
+                    // rightButton={rightButtonConfig}
                     style={{ backgroundColor: "white", }}
                     statusBar={{ tintColor: "white", showAnimation: 'slide', hideAnimation: 'slide' }}
                 />
